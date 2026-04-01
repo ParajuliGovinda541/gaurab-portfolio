@@ -77,9 +77,28 @@
    </div>
   </div>
 
-  <div class="flex justify-center">
-   <img src="images/Gaurab.jpg" class="rounded-2xl shadow-2xl"/>
-  </div>
+<div class="relative group w-full max-w-md mx-auto">
+
+    <!-- Main Image -->
+    <div class="rounded-2xl overflow-hidden border border-gray-800 shadow-xl">
+        <img src="images/Gaurab.jpg"
+            class="w-full h-[420px] object-cover transition duration-500 group-hover:scale-105"
+            alt="Gaurab Parajuli - Civil Engineer">
+    </div>
+
+    <!-- Overlay Badge -->
+    <div class="absolute bottom-4 left-4 bg-primary/90 backdrop-blur px-4 py-2 rounded-lg border border-gray-700">
+        <p class="text-xs text-gray-400">Civil Engineer</p>
+        <p class="text-sm font-semibold text-white">NEA Licensed</p>
+    </div>
+
+    <!-- Floating Card (Dynamic Content) -->
+    <div class="absolute -right-6 top-6 bg-secondary border border-gray-800 rounded-xl p-4 shadow-lg hidden md:block">
+        <p class="text-xs text-gray-400 mb-1">Specialization</p>
+        <p class="text-sm font-semibold">AutoCAD | 3D | Valuation</p>
+    </div>
+
+</div>
  </div>
 </section>
 
