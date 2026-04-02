@@ -77,21 +77,24 @@ tailwind.config = {
    </div>
 
    <!-- STATS -->
-   <div class="flex gap-8 mt-8">
-    <div>
-      <p class="text-2xl font-bold">20+</p>
-      <p class="text-xs text-gray-400">Projects</p>
-    </div>
-    <div>
-      <p class="text-2xl font-bold">3+</p>
-      <p class="text-xs text-gray-400">Years Experience</p>
-    </div>
-    <div>
-      <p class="text-2xl font-bold">100%</p>
-      <p class="text-xs text-gray-400">Client Satisfaction</p>
-    </div>
-   </div>
+<div class="flex gap-8 mt-8" id="stats">
+
+  <div>
+    <p class="text-2xl font-bold stat" data-target="20">0+</p>
+    <p class="text-xs text-gray-400">Projects</p>
   </div>
+
+  <div>
+    <p class="text-2xl font-bold stat" data-target="3">0+</p>
+    <p class="text-xs text-gray-400">Years Experience</p>
+  </div>
+
+  <div>
+    <p class="text-2xl font-bold stat" data-target="100">0%</p>
+    <p class="text-xs text-gray-400">Client Satisfaction</p>
+  </div>
+
+</div>
 
   <!-- IMAGE -->
   <div class="relative max-w-md mx-auto">
@@ -255,5 +258,40 @@ tailwind.config = {
  <p class="text-gray-500 text-sm">© 2026 Gaurab Parajuli</p>
 </footer>
 
+<script>
+const stats = document.querySelectorAll('.stat');
+let started = false;
+
+function runCounter() {
+  stats.forEach(stat => {
+    const target = +stat.getAttribute('data-target');
+    let count = 0;
+
+    const increment = target / 60;
+
+    const update = () => {
+      count += increment;
+
+      if (count < target) {
+        stat.innerText = Math.ceil(count) + (stat.innerText.includes('%') ? '%' : '+');
+        requestAnimationFrame(update);
+      } else {
+        stat.innerText = target + (stat.innerText.includes('%') ? '%' : '+');
+      }
+    };
+
+    update();
+  });
+}
+
+window.addEventListener('scroll', () => {
+  const section = document.getElementById('stats');
+
+  if (!started && window.scrollY + window.innerHeight > section.offsetTop) {
+    runCounter();
+    started = true;
+  }
+});
+</script>
 </body>
 </html>
