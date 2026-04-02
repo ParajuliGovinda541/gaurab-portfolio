@@ -1,51 +1,3 @@
-<!doctype html>
-<html lang="en" class="scroll-smooth">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Gaurab Parajuli | Civil Engineer in Bharatpur Chitwan Nepal</title>
-<meta name="description" content="Gaurab Parajuli is a NEA Licensed Civil Engineer based in Bharatpur, Chitwan, Nepal specializing in AutoCAD design, 3D rendering, valuation, and construction supervision.">
-
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = {
- theme: {
-  extend: {
-   colors: {
-    primary: '#0B1120',
-    secondary: '#111827',
-    accent: '#C9A227'
-   }
-  }
- }
-}
-</script>
-</head>
-
-<body class="bg-primary text-gray-200 font-sans">
-
-<!-- NAVBAR -->
-<header class="fixed w-full bg-primary/90 backdrop-blur border-b border-gray-800 z-50">
- <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-  <h1 class="text-xl font-bold">Gaurab<span class="text-accent">.</span></h1>
-
-  <nav class="hidden md:flex items-center gap-6 text-sm uppercase">
-    <a href="#about" class="hover:text-accent">About</a>
-    <a href="#skills" class="hover:text-accent">Skills</a>
-    <a href="#projects" class="hover:text-accent">Projects</a>
-
-    <a href="tel:+9779801398097" class="text-accent font-semibold border-l pl-4 border-gray-700">
-      +977 9801398097
-    </a>
-
-    <a href="#contact" class="border border-accent px-4 py-1 rounded hover:bg-accent hover:text-black">
-      Contact
-    </a>
-  </nav>
- </div>
-</header>
-
 <!-- HERO -->
 <section id="about" class="min-h-screen flex items-center pt-24">
  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
@@ -77,24 +29,24 @@ tailwind.config = {
    </div>
 
    <!-- STATS -->
-<div class="flex gap-8 mt-8" id="stats">
+   <div class="flex gap-8 mt-8" id="stats">
+    <div>
+      <p class="text-2xl font-bold stat" data-target="20" data-suffix="+">0+</p>
+      <p class="text-xs text-gray-400">Projects</p>
+    </div>
 
-  <div>
-    <p class="text-2xl font-bold stat" data-target="20">0+</p>
-    <p class="text-xs text-gray-400">Projects</p>
+    <div>
+      <p class="text-2xl font-bold stat" data-target="3" data-suffix="+">0+</p>
+      <p class="text-xs text-gray-400">Years Experience</p>
+    </div>
+
+    <div>
+      <p class="text-2xl font-bold stat" data-target="100" data-suffix="%">0%</p>
+      <p class="text-xs text-gray-400">Client Satisfaction</p>
+    </div>
+   </div>
+
   </div>
-
-  <div>
-    <p class="text-2xl font-bold stat" data-target="3">0+</p>
-    <p class="text-xs text-gray-400">Years Experience</p>
-  </div>
-
-  <div>
-    <p class="text-2xl font-bold stat" data-target="100">0%</p>
-    <p class="text-xs text-gray-400">Client Satisfaction</p>
-  </div>
-
-</div>
 
   <!-- IMAGE -->
   <div class="relative max-w-md mx-auto">
@@ -264,21 +216,23 @@ let started = false;
 
 function runCounter() {
   stats.forEach(stat => {
-    const target = +stat.getAttribute('data-target');
+    const target = +stat.dataset.target;
+    const suffix = stat.dataset.suffix || "";
     let count = 0;
 
-    const increment = target / 60;
+    const speed = 40;
+    const increment = target / speed;
 
-    const update = () => {
+    function update() {
       count += increment;
 
       if (count < target) {
-        stat.innerText = Math.ceil(count) + (stat.innerText.includes('%') ? '%' : '+');
+        stat.innerText = Math.ceil(count) + suffix;
         requestAnimationFrame(update);
       } else {
-        stat.innerText = target + (stat.innerText.includes('%') ? '%' : '+');
+        stat.innerText = target + suffix;
       }
-    };
+    }
 
     update();
   });
@@ -287,11 +241,11 @@ function runCounter() {
 window.addEventListener('scroll', () => {
   const section = document.getElementById('stats');
 
-  if (!started && window.scrollY + window.innerHeight > section.offsetTop) {
+  if (!started && section && window.scrollY + window.innerHeight > section.offsetTop) {
     runCounter();
     started = true;
   }
 });
-</script>
+</script>  
 </body>
 </html>
